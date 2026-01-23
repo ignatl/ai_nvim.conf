@@ -10,6 +10,7 @@ This is my personal Neovim setup, focused on a clean and productive coding envir
 - **Color Scheme:** `monokai.nvim`
 - **Keybinding Helper:** `which-key.nvim`
 - **Python LSP:** `ty`
+- **Side File Menu (Explorer)** with `nvim‑tree`
 
 Other minor or optional plugins are included and loaded as needed.
 
@@ -39,7 +40,6 @@ Other minor or optional plugins are included and loaded as needed.
     ```
 
 ## ToDo
-- **Side File Menu (Explorer)** with `nvim‑tree`
 - **Tabs & Buffers UI** via `bufferline`
 - **Linting & Formatting** with `ruff` and `mypy`
 - **Syntax Highlighting** using `nvim-treesitter`
