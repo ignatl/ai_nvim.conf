@@ -24,3 +24,6 @@ vim.opt.hlsearch = true             -- highlight matches
 vim.opt.ignorecase = true           -- ignore case in searches by default
 vim.opt.smartcase = true            -- but make it case sensitive if uppercase is entered
 
+-- Scrolling
+vim.opt.scrolloff = 7               -- Number of lines to keep below and above the cursor
+
