@@ -120,6 +120,11 @@ require("lazy").setup({
         "echasnovski/mini.icons",
         version = false, -- всегда использовать последнюю
         lazy = true
-    }
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function() require("plugins.nvim-tree") end
+    },
 })
 
