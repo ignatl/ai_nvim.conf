@@ -39,6 +39,8 @@ Other minor or optional plugins are included and loaded as needed.
     ```
 
 ## ToDo
+- **Side File Menu (Explorer)** with `nvim‑tree`
+- **Tabs & Buffers UI** via `bufferline`
 - **Linting & Formatting** with `ruff` and `mypy`
 - **Syntax Highlighting** using `nvim-treesitter`
 - **File Navigation** via `telescope.nvim`
