@@ -63,6 +63,19 @@ nvim_tree.setup({
     on_attach = on_attach, -- attach custom keymaps
 })
 
+-- Autoclose
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if
+      #vim.api.nvim_list_wins() == 1
+      and vim.bo.filetype == "NvimTree"
+    then
+      vim.cmd("quit")
+    end
+  end,
+})
+
 -- Leader key mappings
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
