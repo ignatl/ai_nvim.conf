@@ -38,6 +38,12 @@ Other minor or optional plugins are included and loaded as needed.
     :Mason
     ```
 
+## ToDo
+- **Linting & Formatting** with `ruff` and `mypy`
+- **Syntax Highlighting** using `nvim-treesitter`
+- **File Navigation** via `telescope.nvim`
+- **Git Integration** with `gitsigns.nvim`
+
 ## Contributing
 This is my personal setup. Feel free to fork and adapt it to your workflow. Pull requests are welcome.
 
