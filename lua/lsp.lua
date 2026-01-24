@@ -16,18 +16,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Keymaps for buffer navigation and closing
         local function add_doc(desc)
-            return { noremap = true, silent = true, desc = desc}
+            return { noremap = true, silent = true, desc = desc }
         end
 
-        keymap.set("n", "gr", lsp.buf.references, bufopts = add_doc("Show References"))
-        keymap.set("n", "gd", lsp.buf.definition, bufopts = add_doc("Show Definition"))
-        keymap.set("n", "<space>rn", lsp.buf.rename, bufopts = add_doc("Rename Buffer"))
-        keymap.set("n", "K", lsp.buf.hover, bufopts = add_doc("Show Hover"))
+        keymap.set("n", "gr", lsp.buf.references, add_doc("Show References"))
+        keymap.set("n", "gd", lsp.buf.definition, add_doc("Show Definition"))
+        keymap.set("n", "<space>rn", lsp.buf.rename, add_doc("Rename Buffer"))
+        keymap.set("n", "K", lsp.buf.hover, add_doc("Show Hover"))
         keymap.set("n", "<space>f", function()
             vim.lsp.buf.format({ async = true })
-        end, bufopts = add_doc("Format"))
+        end, add_doc("Format"))
         keymap.set(
-            "n", "<leader>d", vim.diagnostic.open_float, bufopts = add_doc("Show line diagnostics")
+            "n", "<leader>d", vim.diagnostic.open_float, add_doc("Show line diagnostics")
         )
     end
 })

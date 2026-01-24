@@ -39,6 +39,13 @@ Other minor or optional plugins are included and loaded as needed.
     ```bash
     :Mason
     ```
+5. Install rust based fuzzy search backend:
+    ```bash
+    rustup default nightly
+    rustup default nightly
+    cd ~/.local/share/nvim/lazy/blink.cmp
+    cargo build --release
+    ```
 
 ## ToDo
 - **Linting & Formatting** with `ruff` and `mypy`

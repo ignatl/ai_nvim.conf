@@ -19,8 +19,10 @@ return {
     },
 
     fuzzy = {
-        implementation = "prefer_rust_with_warning",
+        implementation = "prefer_rust",
     },
+
+    build = "cargo build --release",
 
     completion = {
         keyword = { range = "prefix" },
