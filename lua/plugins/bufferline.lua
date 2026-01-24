@@ -42,14 +42,9 @@ bufferline.setup({
 })
 
 -- Keymaps for buffer navigation and closing
-local opts = { noremap = true, silent = true }
 local function add_doc(desc)
     return { noremap = true, silent = true, buffer = bufnr , desc = desc}
 end
-
--- Switch to next/previous buffer
-vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', add_doc("Next Tab"))
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprev<CR>', add_doc("Previous Tab"))
 
 -- Close current buffer
 vim.api.nvim_set_keymap('n', '<leader>bd', ':Bdelete<CR>', add_doc("Close Tab"))
