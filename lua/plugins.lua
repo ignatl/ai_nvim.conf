@@ -24,11 +24,7 @@ require("lazy").setup({
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
+        opts = {},
         keys = {
             {
                 "<leader>?",
@@ -45,7 +41,7 @@ require("lazy").setup({
     },
     {
         "echasnovski/mini.icons",
-        version = false, -- всегда использовать последнюю
+        version = false, -- olways use the latest
         lazy = true
     },
     {
@@ -53,5 +49,15 @@ require("lazy").setup({
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function() require("plugins.nvim-tree") end
     },
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            -- load full config from separate file
+            require("plugins.bufferline")  -- user/bufferline.lua
+        end,
+    },
+    "famiu/bufdelete.nvim",
 })
 
