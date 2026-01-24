@@ -1,8 +1,9 @@
--- Remove Global Default Key mapping
-vim.keymap.del("n", "grn")
+-- -- Remove Global Default Key mapping
 vim.keymap.del("n", "gra")
-vim.keymap.del("n", "grr")
 vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "grt")
 vim.keymap.del("n", "gO")
 vim.keymap.del("n", "gcc")
 
@@ -14,21 +15,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local lsp = vim.lsp
 	    local bufopts = { noremap = true, silent = true }
 
-        -- Keymaps for buffer navigation and closing
-        local function add_doc(desc)
-            return { noremap = true, silent = true, desc = desc }
+        -- Helper to create buffer-local keymap with description
+        local function map(mode, lhs, rhs, desc)
+            keymap.set(mode, lhs, rhs, { noremap = true, silent = true, buffer = buf, desc = desc })
         end
 
-        keymap.set("n", "gr", lsp.buf.references, add_doc("Show References"))
-        keymap.set("n", "gd", lsp.buf.definition, add_doc("Show Definition"))
-        keymap.set("n", "<space>rn", lsp.buf.rename, add_doc("Rename Buffer"))
-        keymap.set("n", "K", lsp.buf.hover, add_doc("Show Hover"))
-        keymap.set("n", "<space>f", function()
+        map("n", "<space>a", lsp.buf.code_action, "Show code actions")
+        map("n", "<space>i", lsp.buf.implementation, "Go to implementation")
+        map("n", "<space>n", lsp.buf.rename, "Rename")
+        map("n", "<space>r", lsp.buf.references, "Show references to symbol")
+        map("n", "<space>t", lsp.buf.type_definition, "Go to type definition")
+        map("n", "<space>d", lsp.buf.definition, "Go to definition")
+        map("n", "<space>O", lsp.buf.document_symbol, "Document symbol")
+        map("n", "<space>k", lsp.buf.hover, "Hover")
+        map("n", "<space>f", function()
             vim.lsp.buf.format({ async = true })
-        end, add_doc("Format"))
-        keymap.set(
-            "n", "<leader>d", vim.diagnostic.open_float, add_doc("Show line diagnostics")
-        )
+        end, "Format")
+        map("n", "<space>l", vim.diagnostic.open_float, "Show line diagnostics")
     end
 })
 
