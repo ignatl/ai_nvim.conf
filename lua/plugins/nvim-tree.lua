@@ -9,26 +9,23 @@ end
 local function on_attach(bufnr)
     local api = require("nvim-tree.api")
 
-    -- Helper function for adding keymap description to the table
-    local function add_doc(desc)
-        return { noremap = true, silent = true, buffer = bufnr , desc = desc}
-    end
+    local utils = require("utils")
 
     -- Tree navigation
-    vim.keymap.set("n", "l", api.node.open.edit, add_doc("Open"))
-    vim.keymap.set("n", "h", api.node.navigate.parent_close, add_doc("Close"))
-    vim.keymap.set("n", "v", api.node.open.vertical, add_doc("Vertical split and Open"))
-    vim.keymap.set("n", "s", api.node.open.horizontal, add_doc("Horizontal split and Open"))
+    utils.map_buf("n", "l", api.node.open.edit, bufnr, "Open")
+    utils.map_buf("n", "h", api.node.navigate.parent_close, bufnr, "Close")
+    utils.map_buf("n", "v", api.node.open.vertical, bufnr, "Vertical split and Open")
+    utils.map_buf("n", "s", api.node.open.horizontal, bufnr, "Horizontal split and Open")
 
     -- File operations
-    vim.keymap.set("n", "a", api.fs.create, add_doc("Create"))
-    vim.keymap.set("n", "d", api.fs.remove, add_doc("Delete"))
-    vim.keymap.set("n", "R", api.fs.rename, add_doc("Rename"))
-    vim.keymap.set("n", "y", api.fs.copy.node, add_doc("Copy (Yank)"))
-    vim.keymap.set("n", "x", api.fs.cut, add_doc("Cut"))
-    vim.keymap.set("n", "p", api.fs.paste, add_doc("Paste"))
-    vim.keymap.set("n", "r", api.tree.reload, add_doc("Reload Tree"))
-    vim.keymap.set("n", "q", api.tree.close, add_doc("Close Tree"))
+    utils.map_buf("n", "a", api.fs.create, bufnr, "Create")
+    utils.map_buf("n", "d", api.fs.remove, bufnr, "Delete")
+    utils.map_buf("n", "R", api.fs.rename, bufnr, "Rename")
+    utils.map_buf("n", "y", api.fs.copy.node, bufnr, "Copy (Yank)")
+    utils.map_buf("n", "x", api.fs.cut, bufnr, "Cut")
+    utils.map_buf("n", "p", api.fs.paste, bufnr, "Paste")
+    utils.map_buf("n", "r", api.tree.reload, bufnr, "Reload Tree")
+    utils.map_buf("n", "q", api.tree.close, bufnr, "Close Tree")
 end
 
 -- Main setup
@@ -67,37 +64,51 @@ nvim_tree.setup({
 })
 
 -- Autoclose
-vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if
-      #vim.api.nvim_list_wins() == 1
-      and vim.bo.filetype == "NvimTree"
-    then
-      vim.cmd("quit")
+local function get_modified_buffers()
+    local modified = {}
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf)
+           and vim.bo[buf].modified
+           and vim.bo[buf].buflisted -- игнорим временные буферы
+        then
+            table.insert(modified, vim.api.nvim_buf_get_name(buf))
+        end
     end
-  end,
+    return modified
+end
+
+-- BufEnter autocmd for safe NvimTree autoclose
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+        if #vim.api.nvim_list_wins() == 1 and vim.bo.filetype == "NvimTree" then
+            local modified = get_modified_buffers()
+            if #modified > 0 then
+                local bufs = vim.api.nvim_list_bufs()
+                for _, buf in ipairs(bufs) do
+                    if vim.api.nvim_buf_is_loaded(buf)
+                       and vim.bo[buf].buflisted
+                       and vim.bo[buf].filetype ~= "NvimTree"
+                    then
+                        vim.api.nvim_set_current_buf(buf)
+                        break
+                    end
+                end
+                print("⚠ Unsaved buffers, cannot quit: " .. table.concat(modified, ", "))
+            else
+                vim.cmd("quit") -- безопасно, можно закрывать
+            end
+        end
+    end,
 })
 
 -- Leader key mappings
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-vim.keymap.set("n", "<leader>r", ":NvimTreeRefresh<CR>", opts)
-vim.keymap.set("n", "<leader>n", function()
+local utils = require("utils")
+utils.map("n", "<leader>e", ":NvimTreeToggle<CR>", "Toggle File Explorer")
+utils.map("n", "<leader>r", ":NvimTreeRefresh<CR>", "Refresh File Explorer")
+utils.map("n", "<leader>n", function()
   require("nvim-tree.api").tree.find_file({
     open = true,
     focus = true,
   })
-end, { desc = "Focus current file in NvimTree" })
-
--- Which-key registration (new spec)
-local wk_status, wk = pcall(require, "which-key")
-if wk_status then
-    wk.add({
-        { "<leader>", group = "Explorer" },
-        { "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
-        { "<leader>n", ":NvimTreeFindFile<CR>", desc = "Focus Current File" },
-        { "<leader>r", ":NvimTreeRefresh<CR>", desc = "Refresh File Explorer" },
-    })
-end
+end, "Focus Current File")
 
