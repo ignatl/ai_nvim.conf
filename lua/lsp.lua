@@ -11,21 +11,22 @@ vim.keymap.del("n", "gcc")
 -- LspAttach: After an LSP Client performs "initialize" and attaches to a buffer.
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function (args)
-        local lsp = vim.lsp
+        local buffer = args.buf
+        local buf = vim.lsp.buf
         local utils = require("utils")
 
-        utils.map("n", "<space>a", lsp.buf.code_action, "Show code actions")
-        utils.map("n", "<space>i", lsp.buf.implementation, "Go to implementation")
-        utils.map("n", "<space>n", lsp.buf.rename, "Rename")
-        utils.map("n", "<space>r", lsp.buf.references, "Show references to symbol")
-        utils.map("n", "<space>t", lsp.buf.type_definition, "Go to type definition")
-        utils.map("n", "<space>d", lsp.buf.definition, "Go to definition")
-        utils.map("n", "<space>O", lsp.buf.document_symbol, "Document symbol")
-        utils.map("n", "<space>k", lsp.buf.hover, "Hover")
-        utils.map("n", "<space>f", function()
-            vim.lsp.buf.format({ async = true })
-        end, "Format")
-        utils.map("n", "<space>l", vim.diagnostic.open_float, "Show line diagnostics")
+        utils.map_buf("n", "<space>a", buf.code_action, buffer, "Show code actions")
+        utils.map_buf("n", "<space>i", buf.implementation, buffer, "Go to implementation")
+        utils.map_buf("n", "<space>n", buf.rename, buffer, "Rename")
+        utils.map_buf("n", "<space>r", buf.references, buffer, "Show references to symbol")
+        utils.map_buf("n", "<space>t", buf.type_definition, buffer, "Go to type definition")
+        utils.map_buf("n", "<space>d", buf.definition, buffer, "Go to definition")
+        utils.map_buf("n", "<space>O", buf.document_symbol, buffer, "List symbols")
+        utils.map_buf("n", "<space>k", buf.hover, buffer, "Hover")
+        utils.map_buf("n", "<space>f", function()
+            vim.buf.format({ async = true })
+        end, buffer, "Format")
+        utils.map_buf("n", "<space>l", vim.diagnostic.open_float, buffer, "Show line diagnostics")
     end
 })
 
