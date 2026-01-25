@@ -41,11 +41,6 @@ bufferline.setup({
     },
 })
 
--- Keymaps for buffer navigation and closing
--- local function add_doc(desc)
---     return { noremap = true, silent = true, buffer = bufnr , desc = desc}
--- end
-
 local utils = require("utils")
 
 -- Close current buffer
