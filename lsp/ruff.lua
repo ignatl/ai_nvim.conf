@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-    cmd = { 'ruff', 'server' },
+    cmd = { 'ruff-lsp', '--stdio' },
     filetypes = { 'python' },
     root_markers = { 'ruff.toml', 'pyproject.toml', '.git' },
     init_options = {
@@ -10,3 +10,4 @@ return {
         },
     },
 }
+

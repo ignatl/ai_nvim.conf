@@ -4,3 +4,4 @@ return {
   filetypes = { 'python' },
   root_markers = { 'ty.toml', 'pyproject.toml', '.git' },
 }
+
