@@ -42,10 +42,12 @@ bufferline.setup({
 })
 
 -- Keymaps for buffer navigation and closing
-local function add_doc(desc)
-    return { noremap = true, silent = true, buffer = bufnr , desc = desc}
-end
+-- local function add_doc(desc)
+--     return { noremap = true, silent = true, buffer = bufnr , desc = desc}
+-- end
+
+local utils = require("utils")
 
 -- Close current buffer
-vim.api.nvim_set_keymap('n', '<leader>bd', ':Bdelete<CR>', add_doc("Close Tab"))
+utils.map('n', '<leader>d', ':Bdelete<CR>', "Close Tab")
 
