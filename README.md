@@ -37,7 +37,7 @@ Other minor or optional plugins are included and loaded as needed.
     ```
 4. Install language tools via Mason:
     ```bash
-    :Mason
+    :MasonInstall ty ruff
     ```
 5. Install rust based fuzzy search backend:
     ```bash
