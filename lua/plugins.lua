@@ -65,5 +65,6 @@ require("lazy").setup({
         config = function() require("nvim-ts-autotag").setup() end,
     },
     require("plugins.treesitter"),
+    require("plugins.mini-pairs"),
 })
 

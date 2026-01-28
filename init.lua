@@ -1,5 +1,6 @@
-require('options')
-require('plugins')
-require('colorscheme')
-require('lsp')
+require("options")
+require("keymaps")
+require("plugins")
+require("colorscheme")
+require("lsp")
 
