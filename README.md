@@ -40,6 +40,12 @@ Other minor or optional plugins are included and loaded as needed.
     ```bash
     :MasonInstall ty ruff
     ```
+5. Install tree-sitter CLI:
+    ```bash
+    sudo apt install clang libclang-dev
+    sudo apt install cargo
+    cargo install tree-sitter-cli
+    ```
 
 ## ToDo
 - **Syntax Highlighting** using `nvim-treesitter`
