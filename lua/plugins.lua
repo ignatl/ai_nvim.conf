@@ -67,5 +67,6 @@ require("lazy").setup({
     require("plugins.treesitter"),
     require("plugins.mini-pairs"),
     require("plugins.ts-autotag"),
+    require("plugins.telescope"),
 })
 
