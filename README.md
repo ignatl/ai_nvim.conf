@@ -13,6 +13,7 @@ This is my personal Neovim setup, focused on a clean and productive coding envir
 - **Side File Menu (Explorer)** with `nvim‑tree`
 - **Tabs & Buffers UI** via `bufferline`
 - **Linting & Formatting** with `ruff`
+- **Syntax Highlighting** using `nvim-treesitter`
 
 Other minor or optional plugins are included and loaded as needed.
 
@@ -40,16 +41,14 @@ Other minor or optional plugins are included and loaded as needed.
     ```bash
     :MasonInstall ty ruff
     ```
-5. Install rust based fuzzy search backend:
+5. Install tree-sitter CLI:
     ```bash
-    rustup default nightly
-    rustup default nightly
-    cd ~/.local/share/nvim/lazy/blink.cmp
-    cargo build --release
+    sudo apt install clang libclang-dev
+    sudo apt install cargo
+    cargo install tree-sitter-cli
     ```
 
 ## ToDo
-- **Syntax Highlighting** using `nvim-treesitter`
 - **File Navigation** via `telescope.nvim`
 - **Git Integration** with `gitsigns.nvim`
 

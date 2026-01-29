@@ -15,18 +15,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local buf = vim.lsp.buf
         local utils = require("utils")
 
-        utils.map_buf("n", "<space>a", buf.code_action, buffer, "Show code actions")
-        utils.map_buf("n", "<space>i", buf.implementation, buffer, "Go to implementation")
-        utils.map_buf("n", "<space>n", buf.rename, buffer, "Rename")
-        utils.map_buf("n", "<space>r", buf.references, buffer, "Show references to symbol")
-        utils.map_buf("n", "<space>t", buf.type_definition, buffer, "Go to type definition")
-        utils.map_buf("n", "<space>d", buf.definition, buffer, "Go to definition")
-        utils.map_buf("n", "<space>O", buf.document_symbol, buffer, "List symbols")
-        utils.map_buf("n", "<space>k", buf.hover, buffer, "Hover")
-        utils.map_buf("n", "<space>f", function()
+        utils.map_buf("n", "<leader>a", buf.code_action, buffer, "Show code actions")
+        utils.map_buf("n", "<leader>i", buf.implementation, buffer, "Go to implementation")
+        utils.map_buf("n", "<leader>n", buf.rename, buffer, "Rename")
+        utils.map_buf("n", "<leader>r", buf.references, buffer, "Show references to symbol")
+        utils.map_buf("n", "<leader>t", buf.type_definition, buffer, "Go to type definition")
+        utils.map_buf("n", "<leader>d", buf.definition, buffer, "Go to definition")
+        utils.map_buf("n", "<leader>O", buf.document_symbol, buffer, "List symbols")
+        utils.map_buf("n", "<leader>k", buf.hover, buffer, "Hover")
+        utils.map_buf("n", "<leader>f", function()
             vim.buf.format({ async = true })
         end, buffer, "Format")
-        utils.map_buf("n", "<space>l", vim.diagnostic.open_float, buffer, "Show line diagnostics")
+        utils.map_buf("n", "<leader>l", vim.diagnostic.open_float, buffer, "Show line diagnostics")
     end
 })
 

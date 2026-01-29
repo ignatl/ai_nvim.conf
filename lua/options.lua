@@ -1,4 +1,6 @@
 -- Hint: use `:h <option>` to figure out the meaning if needed
+vim.g.have_nerd_font = true
+
 vim.opt.clipboard = 'unnamedplus'   -- use system clipboard
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}  -- ???
 vim.opt.mouse = 'a'                 -- allow mouse to be used in nvim
@@ -8,6 +10,9 @@ vim.opt.tabstop = 4                 -- number of visual spaces per TAB
 vim.opt.softtabstop = 4             -- number of spaces for TAB replacement
 vim.opt.shiftwidth = 4              -- number of spaces for autoindent
 vim.opt.expandtab = true            -- converts tabs into spaces when typing
+vim.opt.smarttab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
 
 -- UI config
 vim.opt.number = true               -- show line number
@@ -26,4 +31,15 @@ vim.opt.smartcase = true            -- but make it case sensitive if uppercase i
 
 -- Scrolling
 vim.opt.scrolloff = 7               -- Number of lines to keep below and above the cursor
+
+-- Save undo history
+vim.opt.undofile = true
+
+-- Keep signcolumn on by default
+vim.opt.signcolumn = "yes"
+
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+vim.opt.confirm = true
 
