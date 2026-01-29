@@ -13,6 +13,7 @@ This is my personal Neovim setup, focused on a clean and productive coding envir
 - **Side File Menu (Explorer)** with `nvim‑tree`
 - **Tabs & Buffers UI** via `bufferline`
 - **Linting & Formatting** with `ruff`
+- **Syntax Highlighting** using `nvim-treesitter`
 
 Other minor or optional plugins are included and loaded as needed.
 
@@ -48,7 +49,6 @@ Other minor or optional plugins are included and loaded as needed.
     ```
 
 ## ToDo
-- **Syntax Highlighting** using `nvim-treesitter`
 - **File Navigation** via `telescope.nvim`
 - **Git Integration** with `gitsigns.nvim`
 
