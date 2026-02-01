@@ -17,15 +17,8 @@ require("lazy").setup({
     { "mason-org/mason.nvim", opts = {} },
     require("plugins.blink"),
     require("plugins.which-key"),
-    {
-        "nvim-tree/nvim-web-devicons",
-        lazy = true
-    },
-    {
-        "echasnovski/mini.icons",
-        version = false, -- olways use the latest
-        lazy = true
-    },
+    require("plugins.web-devicons"),
+    require("plugins.mini-icons"),
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
