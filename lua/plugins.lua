@@ -20,15 +20,7 @@ require("lazy").setup({
     require("plugins.web-devicons"),
     require("plugins.mini-icons"),
     require("plugins.nvim-tree"),
-    {
-        "akinsho/bufferline.nvim",
-        version = "*",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function()
-            -- load full config from separate file
-            require("plugins.bufferline")  -- user/bufferline.lua
-        end,
-    },
+    require("plugins.bufferline"),
     "famiu/bufdelete.nvim",
     "nvim-treesitter/nvim-treesitter-textobjects",
     {
