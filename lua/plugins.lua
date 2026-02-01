@@ -15,26 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     "tanvirtin/monokai.nvim",           -- colorscheme
     { "mason-org/mason.nvim", opts = {} },
-    {
-        "saghen/blink.cmp",
-        -- snippets for the snippet source
-        dependencies = { "rafamadriz/friendly-snippets" },
-        opts = function() require("plugins.blink") end
-    },
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {},
-        keys = {
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ global = false })
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-            },
-        },
-    },
+    require("plugins.blink"),
+    require("plugins.which-key"),
     {
         "nvim-tree/nvim-web-devicons",
         lazy = true

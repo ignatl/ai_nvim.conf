@@ -1,40 +1,45 @@
 return {
-    keymap = {
-        preset = "enter",
-        ["<Up>"] = { "select_prev", "fallback" },
-        ["<Down>"] = { "select_next", "fallback" },
-        ["<Tab>"] = { "select_next", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "fallback" },
-        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-    },
+    "saghen/blink.cmp",
+    -- snippets for the snippet source
+    dependencies = { "rafamadriz/friendly-snippets" },
+    opts = function()
+        keymap = {
+            preset = "enter",
+            ["<Up>"] = { "select_prev", "fallback" },
+            ["<Down>"] = { "select_next", "fallback" },
+            ["<Tab>"] = { "select_next", "fallback" },
+            ["<S-Tab>"] = { "select_prev", "fallback" },
+            ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+            ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+            ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+        }
 
-    appearance = {
-        nerd_font_variant = "mono",
-    },
+        appearance = {
+            nerd_font_variant = "mono",
+        }
 
-    sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
-    },
+        sources = {
+            default = { "lsp", "path", "snippets", "buffer" },
+        }
 
-    fuzzy = {
-        implementation = "prefer_rust",
-    },
+        fuzzy = {
+            implementation = "prefer_rust",
+        }
 
-    build = "cargo build --release",
+        build = "cargo build --release"
 
-    completion = {
-        keyword = { range = "prefix" },
-        menu = {
-            draw = {
-                treesitter = { "lsp" },
+        completion = {
+            keyword = { range = "prefix" },
+            menu = {
+                draw = {
+                    treesitter = { "lsp" },
+                },
             },
-        },
-        trigger = { show_on_trigger_character = true },
-        documentation = { auto_show = true },
-    },
+            trigger = { show_on_trigger_character = true },
+            documentation = { auto_show = true },
+        }
 
-    signature = { enabled = true },
+        signature = { enabled = true }
+    end
 }
 
