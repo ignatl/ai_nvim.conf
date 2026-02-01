@@ -23,10 +23,6 @@ require("lazy").setup({
     require("plugins.bufferline"),
     "famiu/bufdelete.nvim",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    {
-        "windwp/nvim-ts-autotag",
-        config = function() require("nvim-ts-autotag").setup() end,
-    },
     require("plugins.treesitter"),
     require("plugins.mini-pairs"),
     require("plugins.ts-autotag"),
