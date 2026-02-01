@@ -19,11 +19,7 @@ require("lazy").setup({
     require("plugins.which-key"),
     require("plugins.web-devicons"),
     require("plugins.mini-icons"),
-    {
-        "nvim-tree/nvim-tree.lua",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function() require("plugins.nvim-tree") end
-    },
+    require("plugins.nvim-tree"),
     {
         "akinsho/bufferline.nvim",
         version = "*",
